@@ -1,0 +1,9 @@
+<div *ngIf="authEnabled"
+  class="sign_in dark">
+  <i title="Войти"
+     (click)="setAuthString('JustForTest')"
+     *ngIf="authString == ''" class="fa fa-sign-in"></i>
+  <i title="Выйти"
+     (click)="delAuthString()"
+     *ngIf="authString != ''" class="fa fa-sign-out"></i>
+</div>

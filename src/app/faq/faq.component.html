@@ -1,0 +1,42 @@
+<div class="w3-container faq">
+  <h2>Что это?</h2>
+
+  <p>Это агрегатор сети <a href="https://ii-net.tk/idec-doc/?p=main">IDEC</a>. Тут собраны все сообщения со всех нод до которых он смог дотянуться.</p>
+
+  <h2>Ну и что тут делать?</h2>
+
+  <p>Можно читать сразу несколько эх, или только одну. Можно читать абсолютно весь(на самом деле нет) стрим сети почти в прямом эфире.</p>
+
+  <h2>А клиентом можно читать?</h2>
+  <p>Можно!</p>
+  <p>Из расширений доступны: <span id="extentions">/list.txt m/ e/ u/e u/m x/c</span> <br><br>
+    Строка для подключения: <b>https://dynamic.lessmore.pw/idec/</b></p>
+
+  <h2>А писать как?</h2>
+  <p>Пока только через клиент. Для получения поинта пишите на <a href="mailto:difrex@lessmore.pw">difrex@lessmore.pw</a></p>
+
+  <h2>А API есть?</h2>
+
+  <p>Да. И оно открыто для всех желающих <a href="https://dynamic.lessmore.pw/search">тут</a>. Это Elasticsearch, так что читайте <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">документацию</a> по нему.</p>
+
+  <h2>Как это работает?</h2>
+
+  <p>
+    <a href="https://gitea.difrex.ru/Umbrella/fetcher">Фетчер</a> собирает сообщения со станций сети. Эхи он берет из /list.txt.
+    Далее сообщение парсится, приводится к структуре в JSON и отправляется в Elasticsearch. В браузере Javascript ходит в API и формирует ленту.
+    Выбранные эхи сохраняются в local storage вашего браузера.
+  </p>
+
+  <h2>Я требую исходный код!</h2>
+  <p>
+    Конечно-конечно! Исходники фетчера доступны <a href="https://gitea.difrex.ru/Umbrella/fetcher">тут</a>, IDEC-ноды <a href="https://gitea.difrex.ru/Umbrella/lessmore">тут</a>, а исходники веб-интерфейса можно увидеть <a href="https://github.com/Difrex/dynamic.lessmore.pw">тут</a>.
+  </p>
+
+  <h2>Куда писать про баги и хотелки?</h2>
+
+  <p>Лучше всего если вы будете писать в эху <b>dynamic.lessmore.pw</b>, только убедитесь, что ваша нода индексируется и эха есть в /list.txt.</p>
+  <p>Еще можно написать на <a href="mailto:difrex@lessmore.pw">почту</a>.</p>
+
+  <h2>Известные проблемы</h2>
+  <p>Клиентское API не работает. Вернее работает, но не так, чтобы очень.</p>
+</div>

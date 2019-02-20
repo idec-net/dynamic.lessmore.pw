@@ -1,0 +1,59 @@
+<div *ngIf="favorites" class="w3-container">
+  <h3 style="text-align:center;">Избранное</h3>
+  <div *ngFor="let msg of favKeys">
+    <div *ngIf="favorites[msg]" class="posts dark_posts w3-padding">
+      <div class="postTitle">
+        <i *ngIf="!favorites[msg].repto"
+           class="rocket fa fa-rocket w3-right"
+           title="Начало треда '{{favorites[msg].subg}}'">
+        </i>
+        <!-- Subg -->
+        <h3 title="{{ favorites[msg].id }}">
+          <a
+            *ngIf="favorites[msg]['topicid']"
+            style="color:#93a1a1 !important;"
+            title="В тред {{ favorites[msg]['topicid'] }}"
+            href="/thread/{{ favorites[msg]['topicid'] }}#{{ favorites[msg]['msgid'] }}">{{ favorites[msg]["subg"] }}</a>
+          <span *ngIf="!favorites[msg]['topicid']">
+            {{ favorites[msg]["subg"] }}
+          </span> @
+          <a
+            href="/echo/{{ favorites[msg].echo }}"
+            title="Читать эху {{ favorites[msg].echo }}">{{ favorites[msg].echo }}</a>
+        </h3>
+        <!-- End of subg -->
+
+        <!-- Author and date -->
+        <span style="color:#268bd2;" title="{{ favorites[msg].address }}">{{ favorites[msg].author }}</span>
+
+        <!-- Right arrow icon -->
+        <i class="fa fa-bullhorn"></i>
+
+        <!-- Recipient -->
+        <a *ngIf="favorites[msg].repto"
+           href="{{ '/msg/' + favorites[msg].repto }}"
+           title="Перейти к {{ favorites[msg].repto }}">{{ favorites[msg].to }}</a>
+        <span *ngIf="!favorites[msg].repto">{{ favorites[msg].to }}</span>
+
+        <!-- Date -->
+        <span class="datetime" title="{{ favorites[msg].date }}">
+          <i class="fa fa-clock-o"></i> {{ favorites[msg].date * 1000 | date:"dd/MM/yyyy HH:mm"  }}
+        </span>
+      </div>
+      
+      <p class="line-breaker postContent"
+         style="margin-top: -1em;margin-bottom:-1em;"
+         [innerHTML]="'\n' + favorites[msg].message.trim() | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: true}"
+         highlight-js-content="code">
+      </p>
+      <a class="linkToPost" href="{{ '/msg/' + favorites[msg].msgid }}" title="Ссылка на сообщение">
+        <i class="fa fa-link"></i>
+      </a>
+
+      <i
+        (click)="removeFromFavorites(msg)"
+        class="removeButton w3-right fa fa-star"
+        title="Удалить из избранного"></i>
+    </div>
+  </div>
+</div>

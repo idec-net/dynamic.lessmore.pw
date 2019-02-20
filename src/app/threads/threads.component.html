@@ -1,0 +1,114 @@
+<div class="w3-container">
+  <div *ngFor="let post of posts"
+       class="posts dark_posts">
+
+    <div class="postTitle">
+      <!-- Subg -->
+      <div>
+        <h3
+          id="{{ post._source.msgid }}"
+          title="{{ post._source.id }}">
+          {{ post._source.subg }} @
+          <a
+            href="/echo/{{ post._source.echo }}"
+            title="Читать эху {{ post._source.echo }}">
+            {{ post._source.echo }}
+          </a>
+        </h3>
+      </div>
+      <!-- End of subg -->
+
+      <!-- Author and date -->
+      <img
+        title="{{ post._source.author }}[{{ post._source.address }}]"
+        style="width:25px;border-radius:50%;"
+        src="https://api.adorable.io/avatars/100/{{ post._source.author }}{{ post._source.address }}.png" />
+      <span style="color:#268bd2;" title="{{ post._source.address }}">{{ post._source.author }}</span>
+
+      <!-- Right arrow icon -->
+      <i class="fa fa-bullhorn"></i>
+
+      <!-- Recipient -->
+      <a *ngIf="post._source.repto"
+         (mouseenter)="showMsgPopup(post._source.repto) "
+         (mouseleave)="closeMsgPopup()"
+         href="{{ '/msg/' + post._source.repto }}"
+         title="Перейти к {{ post._source.repto }}">{{ post._source.to }}</a>
+
+      <!-- Message popup -->
+      <div *ngIf="msgPopupToggle" class="msgPopup dark_posts">
+        <div *ngFor="let post of postService.popup" style="border-color:#2aa198 !important;">
+          <div class="postTitle">
+            <i *ngIf="!post._source.repto"
+               class="fa fa-rocket rocket w3-right"
+               title="Начало треда '{{post._source.subg}}'">
+            </i>
+            <!-- Subg -->
+            <h3 title="{{ post._source.id }}">
+              {{ post._source.subg }} @
+              {{ post._source.echo }}
+            </h3>
+            <!-- End of subg -->
+
+            <!-- Author and date -->
+            {{ post._source.author }}
+
+            <!-- Right arrow icon -->
+            <i class="fa fa-bullhorn"></i>
+
+            <!-- Recipient -->
+            <span
+              style="color:#268bd2;">
+              {{ post._source.to }}
+            </span>
+
+            <!-- Date -->
+            <span class="datetime" title="{{ post._source.date }}">
+              <i class="fa fa-clock-o"></i> {{ post._source.date * 1000 | date:"dd/MM/yyyy HH:mm"  }}
+            </span>
+
+            <!-- And of author and date -->
+          </div>
+
+          <p class="line-breaker postContent"
+             style="margin-top: -1em;margin-bottom:-1em;"
+             [innerHTML]="post._source.message | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: false}"
+             highlight-js-content="code">
+          </p>
+        </div>
+      </div>
+
+      <span
+        *ngIf="!post._source.repto"
+        style="color:#268bd2;">
+        {{ post._source.to }}
+      </span>
+
+      <!-- Date -->
+      <span class="datetime" title="{{ post._source.date }}">
+        <i class="fa fa-clock-o"></i> {{ post._source.date * 1000 | date:"dd/MM/yyyy HH:mm"  }}
+      </span>
+    </div>
+
+    <p class="line-breaker postContent"
+       style="margin-top: -1em;margin-bottom:-1em;"
+       [innerHTML]="post._source.message | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: false}"
+       highlight-js-content="code">
+    </p>
+    <a class="linkToPost" href="{{ '/msg/' + post._source.msgid }}" title="Ссылка на сообщение"><i class="fa fa-link"></i></a>
+
+    <i
+      *ngIf="favsEnabled && favorites && !favorites[post._source.msgid]"
+      class="fa fa-star w3-right"
+      (click)="addToFavorites(post._source)"
+      style="cursor:pointer;"
+      title="Добавить пост в избранное"></i>
+    <i
+      *ngIf="favsEnabled && favorites && favorites[post._source.msgid]"
+      class="fa fa-star w3-right"
+      (click)="removeFromFavorites(post._source.msgid)"
+      style="cursor:pointer;color:#cb4b16;"
+      title="Удалить пост из избранного"></i>
+    
+  </div>
+</div>

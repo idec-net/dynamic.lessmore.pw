@@ -1,0 +1,178 @@
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) 
+{
+    background-color:$rebase03;
+    color:$rebase0;
+    * { color:$rebase0; }
+    h1,h2,h3,h4,h5,h6 { color:$rebase1; border-color: $rebase0; }
+    a, a:active, a:visited { color: $rebase1; }
+}
+@mixin accentize($accent) {
+    a, a:active, a:visited, code.url { color: $accent; }
+    h1,h2,h3,h4,h5,h6 {color:$accent}
+}
+/* light is default mode, so pair with general html definition */
+html, .light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
+.dark  { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
+html * {
+    color-profile: sRGB;
+    rendering-intent: auto;
+}
+
+/* You can add global styles to this file, and also import other style files */
+.theme {}
+.dark {
+    --bg: #073642;
+    background-color: var(--bg) !important;
+    color: #839496 !important;
+}   
+    
+.dark_posts {
+    --bg: #002b36;   
+    background-color: var(--bg) !important;
+    color: #839496;
+}
+
+.darl_posts h2 {
+    color: #268bd2 !important;
+}
+.light {
+    --bg: #fdf6e3;
+    background-color: var(--bg) !important;
+}
+
+body {
+    --bg: #002b36;
+    background-color: var(--bg);
+    background-image: url("/assets/bg.png");
+    color: #657b83;
+}
+
+.headerPanel {
+    /* --bg: #002b36; */
+    background-color: transparent !important;
+    /* background-image: url("/assets/bg.png"); */
+    width: 100%;
+    height: 5em;
+    margin-top: 0;
+    /* position: fixed; */
+    text-align: center;
+    z-index: 995;
+}
+
+.echoFilterButton {
+    position: fixed !important;
+    color: #2aa198 !important;
+    top: 1.4em;
+    left: 1em;
+    background-color: transparent !important;
+    border-style: none;
+    z-index: 999;
+}
+
+@media only screen and (max-width: 800px) {
+    .echoFilterButton {
+        position: absolute !important;
+    }
+}
+
+.menuButton {
+    position: absolute;
+    color: #b58900 !important;
+    top: 1.4em;
+    left: 5em;
+    background-color: transparent !importan;
+    border-style: none;
+}
+
+.menu {
+    /* position: absolute !important; */
+    color: #b58900;
+    top: 1.4em;
+    left: 3em;
+    background-color: transparent !importan;
+    border-style: none;
+}
+
+.quote {
+    border-left: solid;
+    border-color: #657b83;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 0.5em;
+    margin-top: 0.1em;
+    margin-left: 1em;
+    color: #6c71c4;
+}
+
+pre {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+}
+
+code {
+    border-radius: 4px;
+    border-width: 2px;
+}
+
+.content {
+    margin-top: 5.5em;
+    margin-bottom: 1em;
+    position: absolute;
+    align: center;
+    z-index: 0;
+}
+
+.rocket {
+    position: relative;
+    top: 0.5em;
+    right: -0.5em;
+    color: #2aa198;
+}
+
+.linkToPost {
+    /* border-left: solid; */
+    /* border-right: solid; */
+    /* border-width: 2px; */
+    /* border-color: grey; */
+    /* border-radius: 4px; */
+    border-bottom: none !important;
+    /* padding-left: .2em; */
+    /* padding-right: .2em; */
+    bottom: 1 em;
+    left: -0.5em;
+}
+
+.sign_in {
+    position: absolute;
+    top: 1em;
+    right: 3.5em;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.flex-container {
+    display: flex;
+    /* margin: 0.5em; */
+    /* justify-content: space-between; */
+    flex-flow: row wrap;
+    /* justify-content: center; */
+    flex-direction: row;
+}
+

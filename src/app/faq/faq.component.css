@@ -1,0 +1,25 @@
+body {
+    --bg: #002b36;
+    background-color: var(--bg);
+    background-image: url("/assets/bg.png") !important;
+    color: #657b83;
+}
+
+a {
+    color: #268bd2 !important;
+    text-decoration: none;
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+}
+
+.faq {
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+@media only screen and (max-width: 600px) {
+    .faq {
+        margin-left: 0em;
+        margin-right: 0em;
+    }
+}

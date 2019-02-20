@@ -1,0 +1,44 @@
+<!-- Filter echo list -->
+<button (click)="toggleSidebar()"
+        class="echoFilterButton dark"
+        title="Настройка ленты">
+  <i class="material-icons" style="font-size:36px;">filter_list</i>
+</button>
+
+<!-- Echoes list -->
+<ul *ngIf="!hideSidebar"
+    id="echoSidebar"
+    class="echoes w3-container w3-sidebar w3-bar-block w3-col m4 l4 dark"
+    style="margin-top:0em;border-radius:4px;padding-bottom:5em;margin-bottom:5em;">
+
+  <div class="w3-bar">
+    <span class="w3-xlarge" *ngIf="echoService.selectedEchoesList().length > 0">Мои эхи</span>
+    
+    <!-- Close button -->
+    <i class="dark fa fa-close w3-xlarge sidebarCloseButton w3-right" (click)="toggleSidebar()"></i>
+  </div>
+
+  <!-- Selected echoes -->
+  <li *ngFor="let echo of echoService.selectedEchoesList()"
+      class="dark_posts w3-bar-item w3-mobile">
+    <span class="badgeGreen w3-left">{{ echo.doc_count }}</span> <a href="/echo/{{ echo.key }}" style="text-decoration:none">{{ echo.key }}</a>
+    <i (click)="onSelect(echo)" class="badgeRed w3-right fa fa-trash"></i>
+  </li>
+
+  <!-- Filter input -->
+  <div class="w3-margin-top">
+    <span class="w3-xlarge">Все эхи</span>
+  </div>
+  <input [(ngModel)]="queryString"
+         type="search"
+         id="filter"
+         class="dark_posts echoFilter w3-bar-item w3-input w3-animate-input"
+         placeholder="фильтрация...">
+
+  <!-- Echoes -->
+  <li *ngFor="let echo of echoes | FilterPipe: queryString"
+      class="dark_posts w3-bar-item">
+    <span class="badge dark_posts">{{ echo.doc_count }}</span> <a href="/echo/{{ echo.key }}" style="text-decoration:none">{{ echo.key }}</a>
+    <i (click)="onSelect(echo)" class="badgeGreenRight w3-right fa fa-plus-circle"></i>
+  </li>
+</ul>
