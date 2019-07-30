@@ -1,3 +1,17 @@
+<div
+  *ngIf="answerError['status'] === 'Error'"
+  class="errorPanel w3-margin w3-padding w3-card">
+  <div>
+    <p class="w3-large">
+      Ошибка!
+      <i
+        style="cursor:pointer;"
+        class="w3-right fa fa-trash" (click)="closeErrorPanel()"></i>
+    </p>
+  </div>
+  <p>{{ answerError['message'] }}</p>
+</div>
+
 <div class="w3-container"
      infinite-scroll
      [infiniteScrollDistance]="0.5"
@@ -28,7 +42,7 @@
         <!-- Subg -->
         <div>
           <h3
-            *ngIf="post._source.topicid != ''"
+            *ngIf="post._source.topicid"
             title="{{ post._source.id }}">
             <a
               style="color:#93a1a1 !important;"
@@ -39,7 +53,7 @@
               title="Читать эху {{ post._source.echo }}">{{ post._source.echo }}</a>
           </h3>
           <h3
-            *ngIf="post._source.topicid === ''"
+            *ngIf="!post._source.topicid"
             title="{{ post._source.id }}">
             {{ post._source.subg }} @
             <a
@@ -124,24 +138,54 @@
         <!-- And of author and date -->
       </div>
 
-      <p class="line-breaker postContent"
-         style="margin-top: -1em;margin-bottom:-1em;"
-         [innerHTML]="'\n' + post._source.message.trim() | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: true}"
-         highlight-js-content="code">
-      </p>
-      <a class="linkToPost" href="{{ '/msg/' + post._source.msgid }}" title="Ссылка на сообщение"><i class="fa fa-link"></i></a>
-      <i
-        *ngIf="favsEnabled && favorites && !favorites[post._source.msgid]"
-        class="fa fa-star w3-right"
-        (click)="addToFavorites(post._source)"
-        style="cursor:pointer;"
-        title="Добавить пост в избранное"></i>
-      <i
-        *ngIf="favsEnabled && favorites && favorites[post._source.msgid]"
-        class="fa fa-star w3-right"
-        (click)="removeFromFavorites(post._source.msgid)"
-        style="cursor:pointer;color:#cb4b16;"
-        title="Удалить пост из избранного"></i>
+      <div class="w3-container">
+        <div class="w3-row">
+          <p class="line-breaker postContent"
+             style="margin-top: -1em;margin-bottom:-1em;"
+             [innerHTML]="'\n' + post._source.message.trim() | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: true}"
+             highlight-js-content="code">
+          </p>
+        </div>
+      </div>
+        <div class="w3-row w3-padding"></div>
+        <div class="w3-row">
+          <a class="linkToPost" href="{{ '/msg/' + post._source.msgid }}" title="Ссылка на сообщение"><i class="fa fa-link"></i></a>
+          <span style="margin-left:1em;">[ <a style="cursor:pointer;" (click)="showAnswerForm(post._source.msgid, post._source.subg)">Ответить</a> ]</span>
+          <i
+            *ngIf="favsEnabled && favorites && !favorites[post._source.msgid]"
+            class="fa fa-star w3-right"
+            (click)="addToFavorites(post._source)"
+            style="cursor:pointer;"
+            title="Добавить пост в избранное"></i>
+          <i
+            *ngIf="favsEnabled && favorites && favorites[post._source.msgid]"
+            class="fa fa-star w3-right"
+            (click)="removeFromFavorites(post._source.msgid)"
+            style="cursor:pointer;color:#cb4b16;"
+            title="Удалить пост из избранного"></i>
+        </div>
+      <!-- Answer form -->
+      <div
+        class="w3-padding"
+        *ngIf="answerForm[post._source.msgid]">
+        <form #answerForm="ngForm" (ngSubmit)="postAnswer(answerForm, post._source)">
+          <label class="w3-text-blue" for="subgInput">сабж <span style="color:#dc322f;">*</span></label>
+          <input id="subgInput" name="subgInput" class="w3-input inputs" [(ngModel)]="replySubg" type="text" required>
+          
+          <label class="w3-text-blue" for="echoInput">эха <span style="color:#dc322f;">*</span></label>
+          <input id="echoInput" name="echoInput" class="w3-input inputs" [(ngModel)]="post._source.echo" type="text" required>
+
+          <label class="w3-text-blue" for="msgInput">текст сообщения <span style="color:#dc322f;">*</span></label>
+          <textarea rows="10" id="msgInput" name="msgInput" type="textarea" class="w3-input inputs" ngModel required></textarea>
+
+          <label for="authInput" class="w3-text-blue">строка авторизации <span style="color:#dc322f;">*</span></label>
+          <input type="password" name="authInput" class="w3-input inputs" ngModel required>
+
+          <br>
+          <input type="submit" class="w3-btn w3-blue button" value="постить">
+          <br>
+        </form>
+      </div>
     </div>
   </div>
 </div>

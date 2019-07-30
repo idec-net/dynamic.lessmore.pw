@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+// import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { UserComponent } from './user/user.component';
 import { ThreadsComponent } from './threads/threads.component';
+import { NewComponent } from './new/new.component';
 
 @NgModule({
     declarations: [
@@ -47,13 +48,15 @@ import { ThreadsComponent } from './threads/threads.component';
         FaqComponent,
         FavoritesComponent,
         UserComponent,
-        ThreadsComponent
+        ThreadsComponent,
+        NewComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        HttpModule,
+        // HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         InfiniteScrollModule,
         LinkyModule,

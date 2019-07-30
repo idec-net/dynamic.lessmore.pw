@@ -5,8 +5,17 @@ export interface Post {
     echo: string;
     subg: string;
     id: string;
+    msgid: string;
     date: number;
     tags: string;
     repto: string;
     body: string;
+}
+
+export class Answer {
+    message: string;
+    echo: string;
+    to: string;
+    repto: string;
+    authstring: string;
 }

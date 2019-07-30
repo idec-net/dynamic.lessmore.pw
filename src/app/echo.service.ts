@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Headers, Http, Response } from '@angular/http';
+// import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { Search, ESResponse } from './search';
 export class EchoService {
     selectedEcho;
     echoesList = [];
-    
+
     search: Search = {
         Url: "/search"
     }

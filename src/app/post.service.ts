@@ -7,6 +7,10 @@ import { Echo, EchoHash } from './echo';
 
 import { Post } from './post';
 
+import { Base64 } from 'js-base64';
+
+import { NgForm } from '@angular/forms';
+
 @Injectable()
 export class PostService {
     settings = {
@@ -21,6 +25,49 @@ export class PostService {
     latestPots: string = `{"sort": [{"date": {"order": "desc"}}, {"_score": {"order": "desc" }}], "size": 10}`;
     echoSearch: string = `{"sort": [{ "date":   { "order": "desc" }}, { "_score": { "order": "desc" }}],"aggs": {"my_fields": {  "terms": { "field": "echo","size": 1000}}}}}`;
     offsetRequest: string;
+
+    // ucs-2 string to base64 encoded ascii
+    utoa(str: string) {
+        return btoa(encodeURIComponent(str));
+    }
+    // base64 encoded ascii to ucs-2 string
+    atou(str: string) {
+        return decodeURIComponent(atob(str));
+    }
+
+    makeIdecNewMessage(form: NgForm): string {
+        let message = [];
+        message.push(form.value.echoInput);
+        message.push("All");
+        message.push(form.value.subgInput);
+        message.push("");
+        message.push("");
+        message.push(form.value.msgInput);
+        return encodeURIComponent(Base64.encode(message.join("\n")));
+    }
+
+    makeIdecReptoMessage(form: NgForm, post: Post): string {
+        let message = [];
+        message.push(form.value.echoInput);
+        message.push(post.author);
+        message.push(form.value.subgInput);
+        message.push("");
+        message.push("@repto:" + post.msgid);
+        message.push(form.value.msgInput);
+        return encodeURIComponent(Base64.encode(message.join("\n")));
+    }
+
+    makeReplySubg(subg: string): string {
+        if (subg.startsWith("Re:")) {
+            return subg;
+        } else {
+            return "Re: " + subg;
+        }
+    }
+
+    postMessage(data: string): Observable<string> {
+        return this.http.post<string>("/idec/u/point", data);
+    }
 
     getThreadPosts(id: string): Observable<ESResponse> {
         let request: string = `{"sort": [{"date": {"order": "asc"}},
