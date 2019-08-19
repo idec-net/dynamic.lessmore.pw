@@ -1,0 +1,47 @@
+<div
+  *ngIf="answerError['status'] === 'Error'"
+  class="errorPanel w3-margin w3-padding w3-card">
+  <div>
+    <p class="w3-large">
+      Ошибка!
+      <i
+        style="cursor:pointer;"
+        class="w3-right fa fa-trash" (click)="closeErrorPanel()"></i>
+    </p>
+  </div>
+  <p>{{ answerError['message'] }}</p>
+</div>
+
+<div class="w3-container">
+  <h2 style="text-align:center;">Последние обсуждения за 30 дней</h2>
+  <div class="posts dark_posts">
+    <table style="width: 100%;margin-bottom:1.5em;margin-top:1.5em;">
+      <tr>
+        <th style="border-style:solid;border-width:1px;">Эха</th>
+        <th style="border-style:solid;border-width:1px;">Тема</th>
+        <th style="border-style:solid;border-width:1px;">Последний ответ</th>
+        <th style="border-style:solid;border-width:1px;">Адрес</th>
+        <th style="border-style:solid;border-width:1px;">Дата</th>
+        <th style="border-style:solid;border-width:1px;">Ответов</th>
+      </tr>
+      <tr style="margin-bottom:10px;" class="table_row" *ngFor="let post of posts">
+        <td style="padding-left:5px;"><a href="/echo/{{ post['post']['hits']['hits'][0]['_source']['echo'] }}">{{ post['post']['hits']['hits'][0]['_source']['echo'] }}</a></td>
+        <td style="padding-left:5px;" class="w3-xlarge">
+          <a href="/thread/{{ post['key'] }}#{{ post['post']['hits']['hits'][0]['_id'] }}">
+            {{ post['post']['hits']['hits'][0]['_source']['subg'] }}
+          </a>
+        </td>
+        <td style="padding-left:5px;white-space: nowrap;">
+          <img
+            title="{{ post['post']['hits']['hits'][0]['_source']['author'] }}"
+            style="width:25px;border-radius:50%;"
+            src="https://api.adorable.io/avatars/100/{{ post['post']['hits']['hits'][0]['_source']['author'] }}{{ post['post']['hits']['hits'][0]['_source']['address'] }}.png" />
+          {{ post['post']['hits']['hits'][0]['_source']['author'] }}
+        </td>
+        <td style="padding-left:5px;">{{ post['post']['hits']['hits'][0]['_source']['address'] }}</td>
+        <td style="padding-left:5px;" align="center">{{ post['post']['hits']['hits'][0]['_source']['date'] * 1000 | date:"dd/MM/yyyy HH:mm" }}</td>
+        <td style="padding-left:5px;" align="center">{{ post['post']['hits']['total'] - 1 }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

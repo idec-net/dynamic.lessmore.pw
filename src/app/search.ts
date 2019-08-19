@@ -50,7 +50,8 @@ class Hit {
 }
 
 class Aggregations {
-    my_fields: MyFields;
+    my_fields?: MyFields;
+    topics?: MyFields;
 }
 
 class MyFields {

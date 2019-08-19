@@ -24,6 +24,7 @@ export class PostService {
 
     latestPots: string = `{"sort": [{"date": {"order": "desc"}}, {"_score": {"order": "desc" }}], "size": 10}`;
     echoSearch: string = `{"sort": [{ "date":   { "order": "desc" }}, { "_score": { "order": "desc" }}],"aggs": {"my_fields": {  "terms": { "field": "echo","size": 1000}}}}}`;
+    threadsSearch: string = `{"sort": [{ "date":   { "order": "desc" }}, { "_score": { "order": "desc" }}],"aggs": {"my_fields": {  "terms": { "field": "topicid.keyword","size": 50}}}}}`;
     offsetRequest: string;
 
     // ucs-2 string to base64 encoded ascii
@@ -106,6 +107,10 @@ export class PostService {
         return this.http.post<ESResponse>(url, this.searchString());
     }
 
+    getForumPosts(): Observable<ESResponse> {
+        return this.http.post<ESResponse>(url, this.forumAggregationString());
+    }
+
     getMessageByID(id: string): Observable<ESResponse> {
         console.log("Echolist: " + this.echoesList());
         return this.http.post<ESResponse>(url, this.messageIDString(id));
@@ -149,6 +154,93 @@ export class PostService {
             this.echoes.push(key);
         }
         return this.echoes.join(" ");
+    }
+
+    echoesListArray(): string[] {
+        this.echoes = [];
+        for (let key in JSON.parse(localStorage.getItem("selectedEcho"))) {
+            this.echoes.push(key);
+        }
+        return this.echoes;
+    }
+
+    forumAggregationString(): string {
+        let aggregation = {
+            sort: [
+                {
+                    date: {
+                        order: "desc"
+                    }
+                }
+            ],
+            aggs: {
+                topics: {
+                    terms: {
+                        field: "topicid.keyword",
+                        size: 1000
+                    },
+                    aggs: {
+                        post: {
+                            top_hits: {
+                                size: 1,
+                                sort: [
+                                    {
+                                        "date": {
+                                            order: "desc"
+                                        }
+                                    }
+                                ],
+                                _source: {
+                                    include: [
+                                        "subg",
+                                        "author",
+                                        "date",
+                                        "echo",
+                                        "topicid",
+                                        "address"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            query: {
+                bool: {
+                    must: [
+                    ]
+                }
+            }
+        };
+
+        let constant_score = {
+            constant_score: {
+                filter: {
+                    terms: {
+                        "echo.keyword": []
+                    }
+                }
+            }
+        };
+
+        let mustArray: Array<any> = [];
+        mustArray.push({
+            "range": {
+                date: {
+                    from: "now-30d",
+                    to: "now-0d"
+                }
+            }
+        });
+        if (this.echoesListArray().length > 0) {
+            constant_score["constant_score"]["filter"]["terms"]["echo.keyword"] = this.echoesListArray();
+            mustArray.push(constant_score);
+        } else {
+            aggregation["aggs"]["topics"]["terms"]["size"] = 50;
+        }
+        aggregation["query"]["bool"]["must"] = mustArray;
+
+        return JSON.stringify(aggregation);
     }
 
     constructor(

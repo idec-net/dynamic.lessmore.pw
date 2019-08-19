@@ -32,6 +32,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { UserComponent } from './user/user.component';
 import { ThreadsComponent } from './threads/threads.component';
 import { NewComponent } from './new/new.component';
+import { ForumComponent } from './forum/forum.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { NewComponent } from './new/new.component';
         FavoritesComponent,
         UserComponent,
         ThreadsComponent,
-        NewComponent
+        NewComponent,
+        ForumComponent
     ],
     imports: [
         BrowserModule,
