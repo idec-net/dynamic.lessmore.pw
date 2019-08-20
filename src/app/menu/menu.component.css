@@ -17,6 +17,7 @@
     top: 5em;
     text-align: center;
     cursor: pointer;
+    z-index: 999999;
 }
 
 .menuEntry {
