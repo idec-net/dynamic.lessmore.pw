@@ -1,3 +1,19 @@
 .table_row {
     background-color: #073642 !important;
 }
+
+h4 {
+    color: #93a1a1;
+}
+
+@media only screen and (max-width: 1250px) {
+    .posts {
+        margin: 1.8em 0em 2em 0em;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .hide-column {
+        display: none;
+    }
+}
