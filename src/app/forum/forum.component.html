@@ -27,8 +27,8 @@
       <tr style="margin-bottom:10px;" class="table_row" *ngFor="let post of posts">
         <td style="padding-left:5px;"><a href="/echo/{{ post['post']['hits']['hits'][0]['_source']['echo'] }}">{{ post['post']['hits']['hits'][0]['_source']['echo'] }}</a></td>
         <td style="padding-left:5px;">
-          <a href="/thread/{{ post['key'] }}#{{ post['post']['hits']['hits'][0]['_id'] }}">
-            <h4>{{ post['post']['hits']['hits'][0]['_source']['subg'] }}</h4>
+          <a href="/thread/{{ post['key'] }}#{{ post['post']['hits']['hits'][0]['_id'] }}" class="w3-xlarge subj">
+            {{ post['post']['hits']['hits'][0]['_source']['subg'] }}
           </a>
         </td>
         <td class="hide-column" style="padding-left:5px;white-space: nowrap;">

@@ -2,8 +2,11 @@
     background-color: #073642 !important;
 }
 
-h4 {
-    color: #93a1a1;
+.subj {
+    color: #93a1a1 !important;
+    text-decoration: none !important;
+    border: none;
+    padding: 0.5em;
 }
 
 @media only screen and (max-width: 1250px) {
