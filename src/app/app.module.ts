@@ -18,6 +18,7 @@ import { FaqComponent } from './faq/faq.component';
 
 // Pipes
 import { FilterPipe } from './filter.pipe';
+import { ReReplacePipe } from './rereplace.pipe';
 import { QuotesPipe } from './quotes.pipe';
 import { PrePipe } from './pre.pipe';
 import { iiLinks } from './iilinks.pipe';
@@ -41,6 +42,7 @@ import { ForumComponent } from './forum/forum.component';
         PostComponent,
         MenuComponent,
         FilterPipe,
+        ReReplacePipe,
         QuotesPipe,
         PrePipe,
         iiLinks,
