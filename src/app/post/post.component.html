@@ -119,7 +119,7 @@
 
             <p class="line-breaker postContent"
                style="margin-top: -1em;margin-bottom:-1em;"
-               [innerHTML]="post._source.message | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: false}"
+               [innerHTML]="post._source.message | PrePipe | QuotesPipe | iiLinks | linky:{newWindow: false}"
                highlight-js-content="code">
             </p>
           </div>
