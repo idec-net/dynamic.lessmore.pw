@@ -153,7 +153,7 @@ export class PostService {
         for (let key in JSON.parse(localStorage.getItem("selectedEcho"))) {
             this.echoes.push(key);
         }
-        return this.echoes.join(" ");
+        return this.echoes.join(" OR ");
     }
 
     echoesListArray(): string[] {
