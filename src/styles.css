@@ -14,7 +14,7 @@ $violet:    #6c71c4;
 $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
-@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) 
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3)
 {
     background-color:$rebase03;
     color:$rebase0;
@@ -40,10 +40,10 @@ html * {
     --bg: #073642;
     background-color: var(--bg) !important;
     color: #839496 !important;
-}   
-    
+}
+
 .dark_posts {
-    --bg: #002b36;   
+    --bg: #002b36;
     background-color: var(--bg) !important;
     color: #839496;
 }
@@ -57,9 +57,16 @@ html * {
 }
 
 body {
-    --bg: #002b36;
-    background-color: var(--bg);
-    background-image: url("/assets/bg.png");
+    background-image: url("/assets/bg.webp");
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
     color: #657b83;
 }
 
@@ -96,7 +103,7 @@ body {
     color: #b58900 !important;
     top: 1.4em;
     left: 5em;
-    background-color: transparent !importan;
+    background-color: transparent !important;
     border-style: none;
 }
 
@@ -112,8 +119,8 @@ body {
 .addButton {
     position: absolute;
     color: #6c71c4 !important;
-    top: 1.5em;
-    left: 9.5em;
+    top: 1.4em;
+    left: 9em;
     background-color: transparent !importan;
     border-style: none;
 }
@@ -267,4 +274,13 @@ code {
 
 .posts .postContent {
     .padding-left: 0.2em !important;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

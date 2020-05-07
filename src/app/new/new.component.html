@@ -1,0 +1,41 @@
+<div
+  *ngIf="error['status'] === 'Error'"
+  class="errorPanel w3-margin w3-padding w3-card">
+  <div>
+    <p class="w3-large">
+      Ошибка!
+      <i
+        style="cursor:pointer;"
+        class="w3-right fa fa-trash" (click)="closeErrorPanel()"></i>
+    </p>
+  </div>
+  <p>{{ error['message'] }}</p>
+</div>
+
+<div class="w3-container">
+  <div class="posts dark_posts">
+    <div
+      class="w3-padding">
+      <div class="postTitle w3-center">
+        <h3>Новый пост</h3>
+      </div>
+      <form #postForm="ngForm" (ngSubmit)="post(postForm)">
+        <label class="w3-text-blue" for="subgInput">сабж <span style="color:#dc322f;">*</span></label>
+        <input id="subgInput" name="subgInput" class="w3-input inputs" type="text" ngModel required>
+        
+        <label class="w3-text-blue" for="echoInput">эха <span style="color:#dc322f;">*</span></label>
+        <input id="echoInput" name="echoInput" class="w3-input inputs" type="text" ngModel required>
+
+        <label class="w3-text-blue" for="msgInput">текст сообщения <span style="color:#dc322f;">*</span></label>
+        <textarea rows="10" id="msgInput" name="msgInput" type="textarea" class="w3-input inputs" ngModel required></textarea>
+
+        <label for="authInput" class="w3-text-blue">строка авторизации <span style="color:#dc322f;">*</span></label>
+        <input type="password" name="authInput" class="w3-input inputs" ngModel required>
+
+        <br>
+        <input type="submit" class="w3-btn w3-blue button" value="постить">
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

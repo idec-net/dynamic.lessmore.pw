@@ -29,7 +29,7 @@
     border-radius: 4px;
     padding: 10px;
     text-decoration: none !important;
-    color: #268bd2 !important;
+    /* color: #268bd2 !important; */
 }
 
 .floatMenu a {

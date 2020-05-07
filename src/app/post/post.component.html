@@ -70,7 +70,7 @@
           title="{{ post._source.author }}[{{ post._source.address }}]"
           style="width:25px;border-radius:50%;"
           src="https://api.adorable.io/avatars/100/{{ post._source.author }}{{ post._source.address }}.png" />
-        <span style="color:#268bd2;" title="{{ post._source.address }}"> {{ post._source.author }} </span>
+        <span style="color:#268bd2;" title="{{ post._source.address }}">{{ post._source.author }} </span>
 
         <!-- Right arrow icon -->
         <i class="fa fa-bullhorn"></i>
@@ -80,7 +80,7 @@
            (mouseenter)="showMsgPopup(post._source.repto) "
            (mouseleave)="closeMsgPopup()"
            href="{{ '/msg/' + post._source.repto }}"
-           title="Перейти к {{ post._source.repto }}"> {{ post._source.to }} </a>
+           title="Перейти к {{ post._source.repto }}"> {{ post._source.to }}</a>
 
         <!-- Message popup -->
         <div *ngIf="msgPopupToggle" class="msgPopup dark_posts">
@@ -119,7 +119,7 @@
 
             <p class="line-breaker postContent"
                style="margin-top: -1em;margin-bottom:-1em;"
-               [innerHTML]="post._source.message | PrePipe | QuotesPipe | iiLinks | linky:{newWindow: false}"
+               [innerHTML]="post._source.message | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: false}"
                highlight-js-content="code">
             </p>
           </div>

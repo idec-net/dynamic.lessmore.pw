@@ -3,16 +3,16 @@
     <h1 class="title w3-hide-small"><a href="/" style="text-decoration:none;">dynamic | less</a></h1>
   </div>
   <button (click)="toggleMenu()" class="menuButton dark" title="Меню">
-    <i class="material-icons" style="font-size:36px;">menu</i>
+    <i class="fa fa-bars" style="font-size:32px;"></i>
   </button>
-  <a href="/new" class="addButton dark"><i style="font-size:32px;" class="material-icons">add_circle_outline</i></a>
+  <a href="/new" class="addButton"><i style="font-size:32px;" class="fa fa-plus-circle"></i></a>
 </div>
 <div [hidden]="hideMenu" class="floatMenu">
   <a href="/"><div class="menuEntry dark">Лента</div></a>
   <a href="/forum"><div class="menuEntry dark">Форум</div></a>
   <a href="/favorites"><div class="menuEntry dark">Избранное</div></a>
-  <a href="/doc/guide"><div class="menuEntry dark">Гайд</div></a>
+  <!-- <a href="/doc/guide"><div class="menuEntry dark">Гайд</div></a> -->
   <a href="/doc/faq"><div class="menuEntry dark">FAQ</div></a>
-  <a href="/stats"><div class="menuEntry dark">Статистика</div></a>
+  <a href="https://grafana.lessmore.pw/d/vPKzlQKWk/idec?orgId=1"><div class="menuEntry dark">Статистика</div></a>
   <a href="https://github.com/idec-net/dynamic.lessmore.pw"><div class="menuEntry dark">Github</div></a>
 </div>

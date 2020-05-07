@@ -1,13 +1,41 @@
 h1 {
-    position: fixed !important;
-    text-align: center;
-    font-size: xx-large;
-    margin-top: 5em;
+  position: fixed !important;
+  text-align: center;
+  font-size: xx-large;
+  margin-top: 5em;
 }
 
 a {
-    color: #268bd2 !important;
-    text-decoration: none;
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
+  color: #268bd2 !important;
+  text-decoration: none;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+}
+
+.posts {
+  box-shadow: 0px 0px 15px #002b36;
+  border-style: none;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #93a1a1;
+  margin: 1em 15% 2em 15%;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  background-color: #eee8d5;
+}
+
+.bg {
+  background-image: url("/assets/bg.webp");
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  color: #657b83;
 }

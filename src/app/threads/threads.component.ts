@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
-
 import { NgForm } from '@angular/forms';
-
-import { Answer, Post } from '../post';
+import { Post } from '../post';
 
 @Component({
     selector: 'app-threads',
@@ -17,16 +15,15 @@ export class ThreadsComponent implements OnInit {
     posts = [];
     private sub: any;
 
-    answerForm = {};
-    replySubg: string;
-    answer = new Answer;
-    public answerError = {};
-
     favsEnabled = true;
     favorites = JSON.parse(localStorage.getItem("favorites"));
 
     msgPopupToggle: boolean = false;
     msgPopup = [];
+
+    answerForm = {};
+    answerError = {};
+    replySubg: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -62,7 +59,7 @@ export class ThreadsComponent implements OnInit {
             // return
             this.postService.postMessage(data).subscribe(
                 ok => {
-                    window.location.href = "/echo/" + post.echo;
+                    window.location.href = "/thread/" + this.id;
                 },
                 err => {
                     console.log(err);
@@ -72,7 +69,7 @@ export class ThreadsComponent implements OnInit {
                             message: err.error
                         }
                     } else {
-                        window.location.href = "/thread/" + post.topicid;
+                        window.location.href = "/thread/" + this.id;
                     }
                 }
             );

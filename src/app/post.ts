@@ -10,7 +10,6 @@ export interface Post {
     tags: string;
     repto: string;
     body: string;
-    topicid: string;
 }
 
 export class Answer {

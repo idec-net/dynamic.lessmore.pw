@@ -2,7 +2,7 @@
 <button (click)="toggleSidebar()"
         class="echoFilterButton dark"
         title="Настройка ленты">
-  <i class="material-icons" style="font-size:36px;">filter_list</i>
+  <i class="fa fa-align-left" style="font-size:32px;"></i>
 </button>
 
 <!-- Echoes list -->
@@ -13,7 +13,7 @@
 
   <div class="w3-bar">
     <span class="w3-xlarge" *ngIf="echoService.selectedEchoesList().length > 0">Мои эхи</span>
-    
+
     <!-- Close button -->
     <i class="dark fa fa-close w3-xlarge sidebarCloseButton w3-right" (click)="toggleSidebar()"></i>
   </div>

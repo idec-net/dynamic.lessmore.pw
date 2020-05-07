@@ -11,3 +11,17 @@ a {
     border-bottom-style: dotted;
     border-bottom-width: 1px;
 }
+
+body {
+    background-image: url("/assets/bg.webp");
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    color: #657b83;
+}

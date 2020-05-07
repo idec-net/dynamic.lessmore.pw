@@ -104,26 +104,32 @@
       </span>
     </div>
 
-    <p class="line-breaker postContent"
-       style="margin-top: -1em;margin-bottom:-1em;"
-       [innerHTML]="post._source.message | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: false}"
-       highlight-js-content="code">
-    </p>
-    <a class="linkToPost" href="{{ '/msg/' + post._source.msgid }}" title="Ссылка на сообщение"><i class="fa fa-link"></i></a>
-    <span style="margin-left:1em;">[ <a style="cursor:pointer;" (click)="showAnswerForm(post._source.msgid, post._source.subg)">Ответить</a> ]</span>
-
-    <i
-      *ngIf="favsEnabled && favorites && !favorites[post._source.msgid]"
-      class="fa fa-star w3-right"
-      (click)="addToFavorites(post._source)"
-      style="cursor:pointer;"
-      title="Добавить пост в избранное"></i>
-    <i
-      *ngIf="favsEnabled && favorites && favorites[post._source.msgid]"
-      class="fa fa-star w3-right"
-      (click)="removeFromFavorites(post._source.msgid)"
-      style="cursor:pointer;color:#cb4b16;"
-      title="Удалить пост из избранного"></i>
+    <div class="w3-container">
+      <div class="w3-row">
+        <p class="line-breaker postContent"
+           style="margin-top: -1em;margin-bottom:-1em;"
+           [innerHTML]="'\n' + post._source.message.trim() | QuotesPipe | PrePipe | iiLinks | linky:{newWindow: true}"
+           highlight-js-content="code">
+        </p>
+      </div>
+    </div>
+    <div class="w3-row w3-padding"></div>
+    <div class="w3-row">
+      <a class="linkToPost" href="{{ '/msg/' + post._source.msgid }}" title="Ссылка на сообщение"><i class="fa fa-link"></i></a>
+      <span style="margin-left:1em;"><a style="cursor:pointer;" (click)="showAnswerForm(post._source.msgid, post._source.subg)">Ответить</a></span>
+      <i
+        *ngIf="favsEnabled && favorites && !favorites[post._source.msgid]"
+        class="fa fa-star w3-right"
+        (click)="addToFavorites(post._source)"
+        style="cursor:pointer;"
+        title="Добавить пост в избранное"></i>
+      <i
+        *ngIf="favsEnabled && favorites && favorites[post._source.msgid]"
+        class="fa fa-star w3-right"
+        (click)="removeFromFavorites(post._source.msgid)"
+        style="cursor:pointer;color:#cb4b16;"
+        title="Удалить пост из избранного"></i>
+    </div>
 
     <!-- Answer form -->
     <div
@@ -132,7 +138,7 @@
       <form #answerForm="ngForm" (ngSubmit)="postAnswer(answerForm, post._source)">
         <label class="w3-text-blue" for="subgInput">сабж <span style="color:#dc322f;">*</span></label>
         <input id="subgInput" name="subgInput" class="w3-input inputs" [(ngModel)]="replySubg" type="text" required>
-
+        
         <label class="w3-text-blue" for="echoInput">эха <span style="color:#dc322f;">*</span></label>
         <input id="echoInput" name="echoInput" class="w3-input inputs" [(ngModel)]="post._source.echo" type="text" required>
 
@@ -147,5 +153,6 @@
         <br>
       </form>
     </div>
+    
   </div>
 </div>
