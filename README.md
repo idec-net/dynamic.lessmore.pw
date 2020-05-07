@@ -4,7 +4,7 @@ Source code of the dynamic.lessmore.pw.
 
 ## Copyright
 
-(c) 2019 Denis Zheleztsov <difrex@lessmore.pw>
+(c) 2020 Denis Zheleztsov <difrex@lessmore.pw>
 
 ## License
 
