@@ -27,15 +27,12 @@
       <tr style="margin-bottom:10px;" class="table_row" *ngFor="let post of posts">
         <td style="padding-left:5px;"><a href="/echo/{{ post['post']['hits']['hits'][0]['_source']['echo'] }}">{{ post['post']['hits']['hits'][0]['_source']['echo'] }}</a></td>
         <td style="padding-left:5px;">
-          <a href="/thread/{{ post['key'] }}#{{ post['post']['hits']['hits'][0]['_id'] }}" class="w3-large subj"
+          <a href="/thread/{{ post['key'] }}#{{ post['post']['hits']['hits'][0]['_id'] }}"
+             class="w3-large subj"
              [innerHTML]="post['post']['hits']['hits'][0]['_source']['subg'] | ReReplacePipe">
           </a>
         </td>
         <td class="hide-column" style="padding-left:5px;white-space: nowrap;">
-          <img
-            title="{{ post['post']['hits']['hits'][0]['_source']['author'] }}"
-            style="width:25px;border-radius:50%;"
-            src="https://api.adorable.io/avatars/100/{{ post['post']['hits']['hits'][0]['_source']['author'] }}{{ post['post']['hits']['hits'][0]['_source']['address'] }}.png" />
           {{ post['post']['hits']['hits'][0]['_source']['author'] }}
         </td>
         <td class="hide-column" style="padding-left:5px;">{{ post['post']['hits']['hits'][0]['_source']['address'] }}</td>

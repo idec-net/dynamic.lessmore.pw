@@ -1,4 +1,4 @@
-FROM node:12.0-slim as builder
+FROM node:14.12-slim as builder
 
 COPY . /build
 

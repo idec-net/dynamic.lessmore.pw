@@ -20,7 +20,10 @@ const routes: Routes = [
     { path: 'thread/:id', component: ThreadsComponent, pathMatch: "full" },
     { path: 'forum', component: ForumComponent, pathMatch: "full" },
     { path: 'new', component: NewComponent, pathMatch: "full" },
-    { path: '', component: PostComponent },
+
+    { path: '', redirectTo: '/forum', pathMatch: 'full' },
+    { path: 'all', component: PostComponent, pathMatch: 'full' },
+
     { path: '**', component: NotfoundComponent },
     // { path: '', component: EchoComponent }
 ];

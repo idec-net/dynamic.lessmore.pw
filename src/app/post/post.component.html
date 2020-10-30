@@ -66,11 +66,7 @@
         <!-- End of subg -->
 
         <!-- Author and date -->
-        <img
-          title="{{ post._source.author }}[{{ post._source.address }}]"
-          style="width:25px;border-radius:50%;"
-          src="https://api.adorable.io/avatars/100/{{ post._source.author }}{{ post._source.address }}.png" />
-        <span style="color:#268bd2;" title="{{ post._source.address }}">{{ post._source.author }} </span>
+        <span style="color:#268bd2;" title="{{ post._source.address }}">@{{ post._source.author }} </span>
 
         <!-- Right arrow icon -->
         <i class="fa fa-bullhorn"></i>

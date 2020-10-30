@@ -33,11 +33,7 @@
       <!-- End of subg -->
 
       <!-- Author and date -->
-      <img
-        title="{{ post._source.author }}[{{ post._source.address }}]"
-        style="width:25px;border-radius:50%;"
-        src="https://api.adorable.io/avatars/100/{{ post._source.author }}{{ post._source.address }}.png" />
-      <span style="color:#268bd2;" title="{{ post._source.address }}">{{ post._source.author }}</span>
+      <span style="color:#268bd2;" title="{{ post._source.address }}">@{{ post._source.author }} </span>
 
       <!-- Right arrow icon -->
       <i class="fa fa-bullhorn"></i>
@@ -47,7 +43,7 @@
          (mouseenter)="showMsgPopup(post._source.repto) "
          (mouseleave)="closeMsgPopup()"
          href="{{ '/msg/' + post._source.repto }}"
-         title="Перейти к {{ post._source.repto }}">{{ post._source.to }}</a>
+         title="Перейти к {{ post._source.repto }}"> {{ post._source.to }} </a>
 
       <!-- Message popup -->
       <div *ngIf="msgPopupToggle" class="msgPopup dark_posts">
@@ -138,7 +134,7 @@
       <form #answerForm="ngForm" (ngSubmit)="postAnswer(answerForm, post._source)">
         <label class="w3-text-blue" for="subgInput">сабж <span style="color:#dc322f;">*</span></label>
         <input id="subgInput" name="subgInput" class="w3-input inputs" [(ngModel)]="replySubg" type="text" required>
-        
+
         <label class="w3-text-blue" for="echoInput">эха <span style="color:#dc322f;">*</span></label>
         <input id="echoInput" name="echoInput" class="w3-input inputs" [(ngModel)]="post._source.echo" type="text" required>
 
@@ -153,6 +149,6 @@
         <br>
       </form>
     </div>
-    
+
   </div>
 </div>
